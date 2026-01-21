@@ -17,6 +17,6 @@ public class Admin extends User {
     @Override
     public void displayDashboard() {
     // This makes your Admin GUI visible when the login is successful
-     new com.mycompany.apu_oodj_afs.gui.AdminDashboard().setVisible(true);
+     
     }
 }
