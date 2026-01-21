@@ -14,10 +14,9 @@ public class Admin extends User {
         // Calls the User parent constructor (Constructor Chaining)
         super(userId, username, password, name, role);
     }
-
     @Override
     public void displayDashboard() {
-        // Person 1 (Admin lead) will put their GUI code here
-        System.out.println("Opening Admin Dashboard for: " + this.name);
+    // This makes your Admin GUI visible when the login is successful
+     new com.mycompany.apu_oodj_afs.gui.AdminDashboard().setVisible(true);
     }
 }

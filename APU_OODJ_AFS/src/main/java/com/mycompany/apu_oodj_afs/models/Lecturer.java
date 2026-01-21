@@ -8,6 +8,16 @@ package com.mycompany.apu_oodj_afs.models;
  *
  * @author jamesmcnellylisette
  */
-public class Lecturer {
-    
+
+// Person 3 will work on this
+public class Lecturer extends User {
+    public Lecturer(String userId, String username, String password, String name, String role) {
+        super(userId, username, password, name, role);
+    }
+
+    @Override
+    public void displayDashboard() {
+        // This will be linked to the LecturerDashboard JFrame later
+        System.out.println("Opening Lecturer Dashboard...");
+    }
 }

@@ -8,6 +8,16 @@ package com.mycompany.apu_oodj_afs.models;
  *
  * @author jamesmcnellylisette
  */
-public class Student {
-    
+
+// Person 4 will work on this
+public class Student extends User {
+    public Student(String userId, String username, String password, String name, String role) {
+        super(userId, username, password, name, role);
+    }
+
+    @Override
+    public void displayDashboard() {
+        // This will be linked to the StudentDashboard JFrame later
+        System.out.println("Opening Student Dashboard...");
+    }
 }
