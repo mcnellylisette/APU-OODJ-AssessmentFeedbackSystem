@@ -1,1 +1,0 @@
-A001|admin|pass123|Admin User|admin@apu.edu.my|Admin

@@ -11,8 +11,10 @@ package com.mycompany.apu_oodj_afs.models;
 
 // Person 3 will work on this
 public class Lecturer extends User {
-    public Lecturer(String userId, String username, String password, String name, String role) {
-        super(userId, username, password, name, role);
+    // Update: Added 'email' to the constructor
+    public Lecturer(String userId, String username, String password, String name, String role, String email) {
+        // Update: Passing 'email' to the User parent class
+        super(userId, username, password, name, role, email);
     }
 
     @Override

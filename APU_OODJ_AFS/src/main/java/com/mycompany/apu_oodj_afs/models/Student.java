@@ -11,8 +11,9 @@ package com.mycompany.apu_oodj_afs.models;
 
 // Person 4 will work on this
 public class Student extends User {
-    public Student(String userID, String username, String password, String name, String role) {
-        super(userID, username, password, name, role);
+   public Student(String userID, String username, String password, String name, String role, String email) {
+        // Update: Pass 'email' to super()
+        super(userID, username, password, name, role, email);
     }
 
     @Override

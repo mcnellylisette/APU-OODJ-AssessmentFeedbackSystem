@@ -19,9 +19,9 @@ public class LoginManager {
                 String[] data = line.split("\\|");
                 if (data[1].equals(username) && data[2].equals(password)) {
                     // This is Polymorphism: returning a specific child as a User parent
-                    if (data[4].equals("Admin")) return new Admin(data[0], data[1], data[2], data[3], data[4]);
-                    if (data[4].equals("Student")) return new Student(data[0], data[1], data[2], data[3], data[4]);
-                    if (data[4].equals("Lecturer")) return new Lecturer(data[0], data[1], data[2], data[3], data[4]);
+                    if (data[5].equals("Admin")) return new Admin(data[0], data[1], data[2], data[3], data[4], data[5]);
+                    if (data[5].equals("Student")) return new Student(data[0], data[1], data[2], data[3], data[4], data[5]);
+                    if (data[5].equals("Lecturer")) return new Lecturer(data[0], data[1], data[2], data[3], data[4], data[5]);
                 }
             }
         } catch (IOException e) {
