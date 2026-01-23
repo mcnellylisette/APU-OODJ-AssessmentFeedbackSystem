@@ -22,17 +22,40 @@ public class Admin extends User {
         System.out.println("Welcome, Admin! Opening your dashboard...");
     }
     
+
+    
     public boolean createUser(User user){
-    return true;
+     // 1. Prepare data with 6 fields: ID|Username|Password|Name|Email|Role
+    String data = user.getUserID() + "|" + 
+                  user.getUsername() + "|" + 
+                  "temp123" + "|" + 
+                  user.getName() + "|" + 
+                  user.getEmail() + "|" + 
+                  user.getRole();
+
+    // 2. Write to file using Try-With-Resources
+    try (java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("data/users.txt", true))) {
+        bw.write(data);
+        bw.newLine();
+        return true; // Success!
+        } 
+        catch (java.io.IOException e)
+        {
+        return false; // Error handling
+        }
+       
     }
+  
+    
     
    public ArrayList<User> viewAllUsers() {
        ArrayList<User> userList = new ArrayList<>();
        return userList;
+       
    }
    
    public boolean updateUser(User user) {
-    return true;
+   return true;
     
     }
     
