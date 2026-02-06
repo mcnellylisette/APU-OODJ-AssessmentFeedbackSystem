@@ -18,7 +18,9 @@ public abstract class User implements Serializable {
     private String name;
     private String role;
     private String email;
-    // The Teacher highlighted "Super" relationships. This constructor will be used by all children.
+
+    // The Teacher highlighted "Super" relationships. This constructor will be used
+    // by all children.
     public User(String userID, String username, String password, String name, String role, String email) {
         this.userID = userID;
         this.username = username;
@@ -28,40 +30,47 @@ public abstract class User implements Serializable {
         this.email = email;
     }
 
-    // POLYMORPHISM: Every subtype (Admin, Student) must implement their own dashboard
+    // POLYMORPHISM: Every subtype (Admin, Student) must implement their own
+    // dashboard
     public abstract void displayDashboard();
 
     // Getters for Encapsulation
-    public String getUserID() {
+    public String getuserID() {
         return userID;
     }
-    public String getUsername(){
+
+    public String getUsername() {
         return username;
     }
-    
+
     public String getRole() {
-        return role; 
+        return role;
     }
-    public String getName() { 
-        return name; 
+
+    public String getName() {
+        return name;
     }
-    
+
     public String getEmail() {
         return email;
     }
-    
-  
-    //Setter for User
-    
-    public void setUserID (String UserId) {
-    this.userID = userID;
+    public String getPassword() {
+        return password;
     }
-    
-    public void setName (String name) {
-    this.name = name;
+
+    // Setter for User
+
+    public void setuserID(String userID) {
+        this.userID = userID;
     }
-    
-    public void setEmail (String emial) {
-    this.email = email;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
+
+        

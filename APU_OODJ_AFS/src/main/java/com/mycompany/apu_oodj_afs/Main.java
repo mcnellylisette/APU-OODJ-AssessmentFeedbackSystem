@@ -14,20 +14,24 @@
 
 package com.mycompany.apu_oodj_afs;
 
-import gui.LandingPage;
+import com.mycompany.apu_oodj_afs.gui.LandingPage;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
 public class Main {
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("APU OODJ AFS");
-            frame.setContentPane(new LandingPage());
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(400, 300);
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        });
+        // Create a Window (Frame)
+        JFrame frame = new JFrame("APU Feedback System");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Add your LandingPage Panel to the Window
+        frame.add(new LandingPage());
+        
+        // Show it
+        frame.pack();
+        frame.setLocationRelativeTo(null); // Center
+        frame.setVisible(true);
     }
 }
+
 
