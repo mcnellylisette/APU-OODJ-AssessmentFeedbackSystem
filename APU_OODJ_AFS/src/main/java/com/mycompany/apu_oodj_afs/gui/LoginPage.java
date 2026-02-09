@@ -64,17 +64,18 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGap(142, 142, 142)
                         .addComponent(Username))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(Password))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(123, 123, 123)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUsername)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(174, 174, 174)
-                            .addComponent(Password))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,9 +85,9 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(Username)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(Password)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
@@ -101,20 +102,26 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {                                         
     String username = txtUsername.getText();
-    String password = new String(txtPassword.getPassword());
+        String password = new String(txtPassword.getPassword());
 
-
-    com.mycompany.apu_oodj_afs.models.User user = 
-        com.mycompany.apu_oodj_afs.core.LoginManager.authenticate(username, password);
-    if (user != null) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Welcome " + user.getName());
-        user.displayDashboard();
-        this.dispose();
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Login Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
+        com.mycompany.apu_oodj_afs.models.User user = 
+            com.mycompany.apu_oodj_afs.core.LoginManager.authenticate(username, password);
+            
+        if (user != null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Welcome " + user.getName());
+            
+            // ROUTING: Open the Admin Dashboard
+            if (user instanceof com.mycompany.apu_oodj_afs.models.Admin) {
+                new AdminDashboard().setVisible(true);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Dashboard coming soon.");
+            }
+            
+            this.dispose(); // Close login window
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Login Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnLoginActionPerformed
 

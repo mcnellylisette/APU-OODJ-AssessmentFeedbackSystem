@@ -16,54 +16,44 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
 public class IDGenerator {
-    // No longer a single constant file. The filename will be generated.
 
-    // Ensures this class cannot be instantiated
-    private IDGenerator() {
-    }
-
-    /**
-     * Generates a new, unique user ID based on a prefix.
-     * For example, calling with "Student" will produce "Student0001", "Student0002", etc.
-     * It manages a separate counter file for each prefix (e.g., "student_id_counter.text").
-     * @param prefix The prefix for the user role (e.g., "Student", "Lecturer").
-     * @return A new, formatted user ID string.
-     */
+        // Method 1: Generates the User ID (A001, S001, etc.)
     public static synchronized String generateNewUserID(String prefix) {
-        String counterFileName = prefix.toLowerCase() + "_id_counter.txt";
-        int nextId = readLastId(counterFileName) + 1;
-        writeLastId(nextId, counterFileName);
+        File dataDir = new File("data");
+        if (!dataDir.exists()) dataDir.mkdirs();
 
-        // Format the ID with the prefix and leading zeros
-        return prefix + String.format("%04d", nextId);
+        String type = prefix.toLowerCase().replace(" ", "_");
+        String counterFile = "data/" + type + "_id_counter.txt";
+        
+        int nextId = 0;
+        File f = new File(counterFile);
+        if (f.exists()) {
+            try (BufferedReader r = new BufferedReader(new FileReader(f))) {
+                nextId = Integer.parseInt(r.readLine().trim());
+            } catch (Exception e) {}
+        }
+        
+        nextId++;
+        try (BufferedWriter w = new BufferedWriter(new FileWriter(f))) {
+            w.write(String.valueOf(nextId));
+        } catch (IOException e) {}
+
+        String finalPrefix = "S";
+        if (prefix.equalsIgnoreCase("Admin")) finalPrefix = "A";
+        else if (prefix.equalsIgnoreCase("Academic Leader")) finalPrefix = "AL";
+        else if (prefix.equalsIgnoreCase("Lecturer")) finalPrefix = "L";
+
+        return finalPrefix + String.format("%03d", nextId);
     }
 
-    private static int readLastId(String filename) {
-        File file = new File(filename);
-        if (!file.exists()) {
-            return 0; // If the file doesn't exist for this prefix, start from 0
-        }
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String lastIdStr = reader.readLine();
-            if (lastIdStr != null && !lastIdStr.trim().isEmpty()) {
-                return Integer.parseInt(lastIdStr.trim());
-            }
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Error reading ID counter file '" + filename + "', resetting to 0. Error: " + e.getMessage());
-            return 0;
-        }
-        return 0;
+    // Method 2: Generates the Unique Username (e.g., james42)
+    public static String generateUsername(String fullName) {
+        String firstName = fullName.split(" ")[0].toLowerCase();
+        int randomNum = (int)(Math.random() * 90) + 10; // Random number 10-99
+        return firstName + randomNum;
     }
 
-    private static void writeLastId(int id, String filename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write(String.valueOf(id));
-        } catch (IOException e) {
-            System.err.println("CRITICAL: Could not write to ID counter file '" + filename + "'. Error: " + e.getMessage());
-        }
-    }
 }
+
 
