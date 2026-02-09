@@ -23,3 +23,5 @@
 hs_err_pid*
 replay_pid*
 /APU_OODJ_AFS/target/
+.DS_Store
+target/
