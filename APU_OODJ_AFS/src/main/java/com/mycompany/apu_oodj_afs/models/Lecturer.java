@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.apu_oodj_afs.models;
+import gui.LecturerDashboardFrame;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -19,7 +21,7 @@ public class Lecturer extends User {
 
     @Override
     public void displayDashboard() {
-        // This will be linked to the LecturerDashboard JFrame later
-        System.out.println("Opening Lecturer Dashboard...");
+        SwingUtilities.invokeLater(() -> new LecturerDashboardFrame(this).setVisible(true));
+        //System.out.println("Opening Lecturer Dashboard...");
     }
 }

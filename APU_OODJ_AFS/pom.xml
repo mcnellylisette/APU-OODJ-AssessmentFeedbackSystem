@@ -8,6 +8,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>24</maven.compiler.release>
-        <exec.mainClass>com.mycompany.apu_oodj_afs.APU_OODJ_AFS</exec.mainClass>
+        <exec.mainClass>com.mycompany.apu_oodj_afs.Main</exec.mainClass>
     </properties>
 </project>

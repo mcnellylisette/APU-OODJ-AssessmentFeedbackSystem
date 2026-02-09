@@ -132,6 +132,10 @@ public class LandingPage extends javax.swing.JPanel {
             "Login Successful",
             JOptionPane.INFORMATION_MESSAGE
         );
+        user.displayDashboard();
+
+    // Close landing page AFTER opening dashboard
+    this.dispose();
 
         // IMPORTANT:
         // Do NOT open dashboards yet if they are not implemented
@@ -145,5 +149,8 @@ public class LandingPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtUsername;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JButton btnLogin;
-}
 
+    private void dispose() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+}
