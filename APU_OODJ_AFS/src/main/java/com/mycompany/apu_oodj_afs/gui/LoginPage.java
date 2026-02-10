@@ -1,23 +1,34 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
 package com.mycompany.apu_oodj_afs.gui;
+
+import com.mycompany.apu_oodj_afs.core.LoginManager;
+import com.mycompany.apu_oodj_afs.models.Admin;
+import com.mycompany.apu_oodj_afs.models.Student;
+import com.mycompany.apu_oodj_afs.models.Lecturer;
+import com.mycompany.apu_oodj_afs.models.User;
+import javax.swing.JOptionPane;
+
 /**
- *
+ * Login Page GUI - Handles user authentication
  * @author jamesmcnellylisette
  */
-
 public class LoginPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginPage.class.getName());
+    private LoginManager loginManager;  // Instance-based LoginManager
 
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
+        this.loginManager = new LoginManager();  // Initialize LoginManager instance
+        setLocationRelativeTo(null);  // Center the window
     }
 
     /**
@@ -102,30 +113,85 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-    String username = txtUsername.getText();
-        String password = new String(txtPassword.getPassword());
-
-        com.mycompany.apu_oodj_afs.models.User user = 
-            com.mycompany.apu_oodj_afs.core.LoginManager.authenticate(username, password);
-            
-        if (user != null) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Welcome " + user.getName());
-            
-            // ROUTING: Open the Admin Dashboard
-            if (user instanceof com.mycompany.apu_oodj_afs.models.Admin) {
-                new AdminDashboard().setVisible(true);
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Dashboard coming soon.");
-            }
-            
-            this.dispose(); // Close login window
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Login Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+      // Get credentials from form
+        String username = txtUsername.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
+        
+        // Validate input
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "Please enter both username and password", 
+                "Login Error", 
+                JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-    }//GEN-LAST:event_btnLoginActionPerformed
+        
+        // Authenticate using the LoginManager instance (non-static)
+        User user = loginManager.authenticate(username, password);
+        
+        if (user != null) {
+            // Login successful - show welcome message
+            JOptionPane.showMessageDialog(this, 
+                "Welcome, " + user.getName() + "!", 
+                "Login Successful", 
+                JOptionPane.INFORMATION_MESSAGE);
+            
+            // Open appropriate dashboard based on user type (polymorphism)
+            openDashboard(user);
+            
+            // Close login window
+            this.dispose();
+            
+        } else {
+            // Login failed
+            JOptionPane.showMessageDialog(this, 
+                "Invalid username or password. Please try again.", 
+                "Login Error", 
+                JOptionPane.ERROR_MESSAGE);
+            
+            // Clear password field for security
+            txtPassword.setText("");
+        }
+    }                                        
 
     /**
+     * Opens the appropriate dashboard based on user type (polymorphism)
+     * @param user The authenticated user object
+     */
+    private void openDashboard(User user) {
+        // Use polymorphism to open the correct dashboard
+        if (user instanceof Admin) {
+            // Admin Dashboard - pass Admin object to constructor
+            new AdminDashboard((Admin) user).setVisible(true);
+            
+        } else if (user instanceof Student) {
+            // Student Dashboard - pass Student object to constructor
+            // TODO: Uncomment when StudentDashboard is created
+            // new StudentDashboard((Student) user).setVisible(true);
+            JOptionPane.showMessageDialog(this, 
+                "Student Dashboard coming soon!", 
+                "Info", 
+                JOptionPane.INFORMATION_MESSAGE);
+            
+        } else if (user instanceof Lecturer) {
+            // Lecturer Dashboard - pass Lecturer object to constructor
+            // TODO: Uncomment when LecturerDashboard is created
+            // new LecturerDashboard((Lecturer) user).setVisible(true);
+            JOptionPane.showMessageDialog(this, 
+                "Lecturer Dashboard coming soon!", 
+                "Info", 
+                JOptionPane.INFORMATION_MESSAGE);
+            
+        } else {
+            // Unknown user type
+            JOptionPane.showMessageDialog(this, 
+                "Unknown user role. Please contact administrator.", 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -148,7 +214,9 @@ public class LoginPage extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new LoginPage().setVisible(true));
-    }
+    
+    }//GEN-LAST:event_btnLoginActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Password;

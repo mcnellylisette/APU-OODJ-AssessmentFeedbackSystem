@@ -1,6 +1,4 @@
 A001|admin|admin123|System Admin|admin@apu.edu.my|Admin
 AL01|leader1|pass123|Academic Leader One|leader1@apu.edu.my|Admin
 L001|lecturer1|pass123|Lecturer One|lecturer1@apu.edu.my|Lecturer
-S001|student1|pass123|Student One|student1@apu.edu.my|Student
-S001|james|123456|james|mcmc@gmail.com|Student
-S002|james87|james123|james|james@gmail.com|Student
+S004|test53|test|test|test123@gmail.com|Student
