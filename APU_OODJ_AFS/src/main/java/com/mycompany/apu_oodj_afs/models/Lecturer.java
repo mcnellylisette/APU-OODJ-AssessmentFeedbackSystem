@@ -3,24 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.apu_oodj_afs.models;
+
+import com.mycompany.apu_oodj_afs.gui.LecturerDashboardFrame;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author jamesmcnellylisette
- */
-
-// Person 3 will work on this
 public class Lecturer extends User {
-    // Update: Added 'email' to the constructor
-    public Lecturer(String userId, String username, String password, String name, String role, String email) {
-        // Update: Passing 'email' to the User parent class
-        super(userId, username, password, name, role, email);
+
+    public Lecturer(String userID, String username, String password, String name, String role, String email) {
+        super(userID, username, password, name, role, email);
     }
 
     @Override
     public void displayDashboard() {
-   
-        //System.out.println("Opening Lecturer Dashboard...");
+        SwingUtilities.invokeLater(() -> new LecturerDashboardFrame(this).setVisible(true));
     }
 }
