@@ -174,15 +174,9 @@ public class LoginPage extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
             
         } else if (user instanceof Lecturer) {
-            // Lecturer Dashboard - pass Lecturer object to constructor
-            // TODO: Uncomment when LecturerDashboard is created
-            // new LecturerDashboard((Lecturer) user).setVisible(true);
-            JOptionPane.showMessageDialog(this, 
-                "Lecturer Dashboard coming soon!", 
-                "Info", 
-                JOptionPane.INFORMATION_MESSAGE);
-            
-        } else {
+    // Open Lecturer Dashboard 
+    new LecturerDashboardFrame((Lecturer) user).setVisible(true);
+} else {
             // Unknown user type
             JOptionPane.showMessageDialog(this, 
                 "Unknown user role. Please contact administrator.", 

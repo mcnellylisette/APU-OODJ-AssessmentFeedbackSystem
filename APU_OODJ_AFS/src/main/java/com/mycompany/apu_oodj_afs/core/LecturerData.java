@@ -33,17 +33,17 @@ import java.util.Set;
  */
 public class LecturerData {
 
-    // -----------------------------
+   
     // File paths
-    // -----------------------------
+    
     public static final String USERS_FILE = "data/users.txt";
     public static final String ASSESSMENTS_FILE = "data/assessments.txt";
     public static final String MARKS_FILE = "data/marks.txt";
     public static final String FEEDBACK_FILE = "data/feedback.txt";
 
-    // =====================================================
+   
     // FILE HELPERS
-    // =====================================================
+   
 
     /**
      * Ensure file + parent folder exist.
@@ -145,9 +145,9 @@ public class LecturerData {
         return prefix + System.currentTimeMillis();
     }
 
-    // =====================================================
+    
     // DROPDOWN / DISPLAY LISTS
-    // =====================================================
+    
 
     /**
      * Load students for dropdown display.
@@ -199,9 +199,9 @@ public class LecturerData {
         return new ArrayList<>(modules);
     }
 
-    // =====================================================
+  
     // MARKS LOGIC (RAW MARKS ONLY)
-    // =====================================================
+    
 
     /**
      * Checks if a mark already exists for the same:
@@ -277,9 +277,9 @@ public class LecturerData {
         return "";
     }
 
-    // =====================================================
+    
     // FINAL RESULTS (TOTAL + GRADE)
-    // =====================================================
+    
 
     /**
      * Convert TOTAL marks into final grade.
