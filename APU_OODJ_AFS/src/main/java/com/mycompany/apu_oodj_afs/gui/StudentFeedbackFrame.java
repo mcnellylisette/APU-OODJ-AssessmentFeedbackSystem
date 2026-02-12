@@ -1,6 +1,7 @@
 package com.mycompany.apu_oodj_afs.gui;
 
 import com.mycompany.apu_oodj_afs.core.StudentDataService;
+import com.mycompany.apu_oodj_afs.models.Assessment;
 import com.mycompany.apu_oodj_afs.models.Student;
 import com.mycompany.apu_oodj_afs.models.StudentFeedback;
 
@@ -9,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.util.List;
+import java.util.Map;
 
 public class StudentFeedbackFrame extends JFrame {
 
@@ -19,13 +21,12 @@ public class StudentFeedbackFrame extends JFrame {
         this.student = student;
 
         setTitle("Student Feedback");
-        setSize(800, 400);
+        setSize(900, 420);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Table Model
         model = new DefaultTableModel(
-                new Object[]{"Module", "Assessment ID", "Feedback", "Lecturer", "Date"},
+                new Object[]{"Module", "Assessment", "Feedback", "Lecturer", "Date"},
                 0
         ) {
             @Override
@@ -37,8 +38,7 @@ public class StudentFeedbackFrame extends JFrame {
         JTable table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
 
-        // --- Search Section ---
-        JTextField assessmentIdField = new JTextField(12);
+        JTextField assessmentIdField = new JTextField(14);
 
         JButton searchBtn = new JButton("Search");
         searchBtn.addActionListener(e -> searchByAssessment(assessmentIdField.getText().trim()));
@@ -63,24 +63,38 @@ public class StudentFeedbackFrame extends JFrame {
         loadAllFeedback();
     }
 
-    // Load all feedback for student
     private void loadAllFeedback() {
         model.setRowCount(0);
-        try {
-            List<StudentFeedback> feedbackList =
-                    StudentDataService.getFeedbackByStudent(student.getuserID());
 
-            for (StudentFeedback f : feedbackList) {
+        try {
+            // Load mapping once
+            Map<String, Assessment> amap = StudentDataService.loadAssessmentMap();
+
+            // Load all feedback for student (service)
+            List<StudentFeedback> list = StudentDataService.getFeedbackByStudent(student.getuserID());
+
+            for (StudentFeedback fb : list) {
+                String assessmentID = fb.getAssessmentID();
+
+                String module = "N/A";
+                String assessmentName = assessmentID;
+
+                Assessment a = amap.get(assessmentID);
+                if (a != null) {
+                    module = a.getModuleCode();
+                    assessmentName = a.getDisplayName();
+                }
+
                 model.addRow(new Object[]{
-                        f.getModuleCode(),
-                        f.getAssessmentID(),
-                        f.getFeedbackText(),
-                        f.getLecturerId(),
-                        f.getDate()
+                        module,
+                        assessmentName,
+                        fb.getFeedbackText(),
+                        fb.getLecturerId(),
+                        fb.getDate()
                 });
             }
 
-            if (feedbackList.isEmpty()) {
+            if (list.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "No feedback found.",
                         "Information",
@@ -95,18 +109,19 @@ public class StudentFeedbackFrame extends JFrame {
         }
     }
 
-    // Search feedback by Assessment ID (diagram aligned)
     private void searchByAssessment(String assessmentID) {
         try {
-            if (assessmentID.isBlank()) {
+            if (assessmentID == null || assessmentID.isBlank()) {
                 throw new IllegalArgumentException("Enter an Assessment ID.");
             }
 
             model.setRowCount(0);
 
-            StudentFeedback f = student.viewFeedback(assessmentID);
+            Map<String, Assessment> amap = StudentDataService.loadAssessmentMap();
 
-            if (f == null) {
+            StudentFeedback fb = student.viewFeedback(assessmentID);
+
+            if (fb == null) {
                 JOptionPane.showMessageDialog(this,
                         "No feedback found for Assessment ID: " + assessmentID,
                         "Not Found",
@@ -114,12 +129,21 @@ public class StudentFeedbackFrame extends JFrame {
                 return;
             }
 
+            String module = "N/A";
+            String assessmentName = assessmentID;
+
+            Assessment a = amap.get(assessmentID);
+            if (a != null) {
+                module = a.getModuleCode();
+                assessmentName = a.getDisplayName();
+            }
+
             model.addRow(new Object[]{
-                    f.getModuleCode(),
-                    f.getAssessmentID(),
-                    f.getFeedbackText(),
-                    f.getLecturerId(),
-                    f.getDate()
+                    module,
+                    assessmentName,
+                    fb.getFeedbackText(),
+                    fb.getLecturerId(),
+                    fb.getDate()
             });
 
         } catch (Exception ex) {

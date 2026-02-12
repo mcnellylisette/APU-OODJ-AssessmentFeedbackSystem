@@ -61,30 +61,63 @@ public class Result {
         try {
             String[] p = line.split("\\|", -1);
 
-            // Backward compatibility:
-            // Old marks.txt format: studentId|moduleCode|assessmentType|marks|grade
-            if (p.length == 5) {
-                String assessmentType = p[2]; // use assessmentType as assessmentID fallback
-                double m = Double.parseDouble(p[3]);
-                return new Result(
-                        UUID.randomUUID().toString(),
-                        p[0],
-                        assessmentType,
-                        p[1],
-                        m,
-                        p[4]
-                );
+            // TEAM FORMAT (6):
+            // markID|studentID|assessmentID|marks|grade|lecturerID
+            if (p.length == 6) {
+                String resultId = p[0].trim();
+                String studentId = p[1].trim();
+                String assessmentId = p[2].trim();
+                double marks = Double.parseDouble(p[3].trim());
+                String grade = p[4].trim();
+
+                // moduleCode is not available in this format -> store assessmentId as moduleCode fallback
+                return new Result(resultId, studentId, assessmentId, assessmentId, marks, grade);
             }
 
-            // New format:
-            if (p.length >= 6) {
-                double m = Double.parseDouble(p[4]);
-                return new Result(p[0], p[1], p[2], p[3], m, p[5]);
+            // TEAM FORMAT (5) BUGGY:
+            // markID|studentID|assessmentID|marks|lecturerID
+            if (p.length == 5) {
+                String resultId = p[0].trim();
+                String studentId = p[1].trim();
+                String assessmentId = p[2].trim();
+                double marks = Double.parseDouble(p[3].trim());
+
+                // grade missing -> compute it
+                String grade = Result.calculateGrade(marks);
+
+                return new Result(resultId, studentId, assessmentId, assessmentId, marks, grade);
+            }
+
+            // OLD FORMAT (5):
+            // studentId|moduleCode|assessmentType|marks|grade
+            if (p.length == 5) {
+                String studentId = p[0].trim();
+                String moduleCode = p[1].trim();
+                String assessmentId = p[2].trim(); // treat as assessmentID
+                double marks = Double.parseDouble(p[3].trim());
+                String grade = p[4].trim();
+
+                return new Result(java.util.UUID.randomUUID().toString(), studentId, assessmentId, moduleCode, marks, grade);
+            }
+
+            // NEW DIAGRAM FORMAT (6):
+            // resultID|studentID|assessmentID|moduleCode|marks|grade
+            if (p.length == 6) {
+                String resultId = p[0].trim();
+                String studentId = p[1].trim();
+                String assessmentId = p[2].trim();
+                String moduleCode = p[3].trim();
+                double marks = Double.parseDouble(p[4].trim());
+                String grade = p[5].trim();
+
+                return new Result(resultId, studentId, assessmentId, moduleCode, marks, grade);
             }
 
             return null;
+
         } catch (Exception ex) {
             return null;
         }
     }
+
 }

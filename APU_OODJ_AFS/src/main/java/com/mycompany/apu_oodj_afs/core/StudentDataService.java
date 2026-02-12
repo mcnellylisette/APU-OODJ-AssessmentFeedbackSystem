@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mycompany.apu_oodj_afs.models.Assessment;
+import java.util.HashMap;
+import java.util.Map;
+
 public final class StudentDataService {
 
     private static final Path DATA_DIR = Paths.get("data");
@@ -16,6 +20,8 @@ public final class StudentDataService {
     private static final Path MARKS = DATA_DIR.resolve("marks.txt");           // read-only for students
     private static final Path FEEDBACK = DATA_DIR.resolve("feedback.txt");     // read-only for students
     private static final Path COMMENTS = DATA_DIR.resolve("student_comments.txt");
+    private static final java.nio.file.Path ASSESSMENTS = DATA_DIR.resolve("assessments.txt");
+
 
     private StudentDataService() {}
 
@@ -25,6 +31,7 @@ public final class StudentDataService {
         touch(MARKS);
         touch(FEEDBACK);
         touch(COMMENTS);
+        touchIfMissing(ASSESSMENTS);
     }
 
     private static void touch(Path file) throws IOException {
@@ -173,4 +180,22 @@ public final class StudentDataService {
     private static boolean isBlank(String s) {
         return s == null || s.trim().isEmpty();
     }
+    
+    public static Map<String, Assessment> loadAssessmentMap() throws java.io.IOException {
+        ensureDataFiles();
+        Map<String, Assessment> map = new HashMap<>();
+
+        for (String line : readAllLines(ASSESSMENTS)) {
+            Assessment a = Assessment.tryParse(line);
+            if (a != null) {
+                map.put(a.getAssessmentID(), a);
+            }
+        }
+        return map;
+    }
+
+    public static Assessment getAssessmentById(String assessmentID) throws java.io.IOException {
+        return loadAssessmentMap().get(assessmentID);
+    }
+
 }
