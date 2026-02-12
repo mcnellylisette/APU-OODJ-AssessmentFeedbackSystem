@@ -6,11 +6,11 @@
 
 package com.mycompany.apu_oodj_afs.gui;
 
-import com.mycompany.apu_oodj_afs.gui.StudentDashboard;
 import com.mycompany.apu_oodj_afs.core.LoginManager;
 import com.mycompany.apu_oodj_afs.models.Admin;
 import com.mycompany.apu_oodj_afs.models.Student;
 import com.mycompany.apu_oodj_afs.models.Lecturer;
+import com.mycompany.apu_oodj_afs.models.AcademicLeader; // ✅ ADD THIS
 import com.mycompany.apu_oodj_afs.models.User;
 import javax.swing.JOptionPane;
 
@@ -171,7 +171,10 @@ public class LoginPage extends javax.swing.JFrame {
         } else if (user instanceof Lecturer) {
             // Open Lecturer Dashboard 
             new LecturerDashboardFrame((Lecturer) user).setVisible(true);
-            
+        
+        } else if (user instanceof AcademicLeader) {
+            new AcademicLeaderDashboardFrame((AcademicLeader) user).setVisible(true);
+
             } else {
                 // Unknown user type
                 JOptionPane.showMessageDialog(this, 

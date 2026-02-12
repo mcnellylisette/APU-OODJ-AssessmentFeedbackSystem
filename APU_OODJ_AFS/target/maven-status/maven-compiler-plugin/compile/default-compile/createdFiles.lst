@@ -1,9 +1,12 @@
 com/mycompany/apu_oodj_afs/gui/LoginFrame.class
 com/mycompany/apu_oodj_afs/gui/StudentCommentFrame.class
+com/mycompany/apu_oodj_afs/gui/StudentReportFrame.class
 com/mycompany/apu_oodj_afs/gui/StudentEditProfileFrame.class
 com/mycompany/apu_oodj_afs/gui/LoginPage.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$5.class
+com/mycompany/apu_oodj_afs/core/AcademicLeaderDataService.class
 com/mycompany/apu_oodj_afs/gui/LandingPage$1.class
+com/mycompany/apu_oodj_afs/gui/StudentReportFrame$1.class
 com/mycompany/apu_oodj_afs/gui/StudentEnrollmentViewFrame$1.class
 com/mycompany/apu_oodj_afs/models/Enrollment.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$9.class
@@ -14,6 +17,7 @@ com/mycompany/apu_oodj_afs/gui/StudentFinalGradeFrame.class
 com/mycompany/apu_oodj_afs/gui/StudentFinalGradeFrame$1.class
 com/mycompany/apu_oodj_afs/core/UserProfileService.class
 com/mycompany/apu_oodj_afs/gui/LoginPage$1.class
+com/mycompany/apu_oodj_afs/models/AcademicLeader.class
 com/mycompany/apu_oodj_afs/gui/LecturerFeedbackManagerTableFrame.class
 com/mycompany/apu_oodj_afs/gui/LecturerFinalResultFrame$1.class
 com/mycompany/apu_oodj_afs/models/LecturerComment.class
@@ -30,12 +34,14 @@ com/mycompany/apu_oodj_afs/gui/StudentResultsFrame.class
 com/mycompany/apu_oodj_afs/core/FileManager.class
 com/mycompany/apu_oodj_afs/models/Student.class
 com/mycompany/apu_oodj_afs/gui/LecturerMarksManagerTableFrame.class
+com/mycompany/apu_oodj_afs/models/Module.class
 com/mycompany/apu_oodj_afs/gui/CreateClassFrame.class
 com/mycompany/apu_oodj_afs/gui/LoginPage$2.class
 com/mycompany/apu_oodj_afs/Main.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$10.class
 com/mycompany/apu_oodj_afs/models/GradingSystem.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$4.class
+com/mycompany/apu_oodj_afs/gui/AcademicLeaderEditProfileFrame.class
 com/mycompany/apu_oodj_afs/StudentModuleTestMain.class
 com/mycompany/apu_oodj_afs/gui/StudentEnrollmentViewFrame.class
 com/mycompany/apu_oodj_afs/models/Lecturer.class
@@ -43,9 +49,11 @@ com/mycompany/apu_oodj_afs/gui/LecturerAssessmentManagerTableFrame$1.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$7.class
 com/mycompany/apu_oodj_afs/gui/StudentClassRegistrationFrame.class
 com/mycompany/apu_oodj_afs/core/UserAuthService.class
+com/mycompany/apu_oodj_afs/gui/ModuleManagementFrame.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$6.class
 com/mycompany/apu_oodj_afs/models/User.class
 com/mycompany/apu_oodj_afs/gui/LecturerAssessmentManagerTableFrame.class
+com/mycompany/apu_oodj_afs/gui/AcademicLeaderDashboardFrame.class
 com/mycompany/apu_oodj_afs/gui/StudentFeedbackFrame.class
 com/mycompany/apu_oodj_afs/gui/LecturerMarksManagerTableFrame$1.class
 com/mycompany/apu_oodj_afs/models/Admin.class
