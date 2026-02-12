@@ -4,6 +4,8 @@
  */
 package gui;
 
+import com.mycompany.apu_oodj_afs.models.User;
+
 /**
  *
  * @author jamesmcnellylisette
@@ -17,6 +19,10 @@ public class AdminDashboard extends javax.swing.JFrame {
      */
     public AdminDashboard() {
         initComponents();
+    }
+
+    AdminDashboard(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

@@ -49,6 +49,7 @@ import com.mycompany.apu_oodj_afs.core.LoginManager;
 import com.mycompany.apu_oodj_afs.models.User;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author jamesmcnellylisette
@@ -128,15 +129,29 @@ public class LandingPage extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(
             this,
-            "Welcome " + user.getName() + " (" + user.getRole() + ")",
+            "Welcome " + user.getName() + " (" + user.getEmail() + ")",
             "Login Successful",
             JOptionPane.INFORMATION_MESSAGE
         );
 
-        // IMPORTANT:
-        // Do NOT open dashboards yet if they are not implemented
-        // user.displayDashboard();
+        // Close the JFrame that contains this LandingPage
+        java.awt.Window w = javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (w != null) w.dispose();
+
+        // Open dashboard
+        if ("ACADEMIC_LEADER".equalsIgnoreCase(user.getRole())) {
+            new AcademicLeaderDashboard(user).setVisible(true);
+        } else if ("ADMIN".equalsIgnoreCase(user.getRole())) {
+            new AdminDashboard(user).setVisible(true);
+        } else if ("LECTURER".equalsIgnoreCase(user.getRole())) {
+            new LecturerDashboard(user).setVisible(true);
+        } else if ("STUDENT".equalsIgnoreCase(user.getRole())) {
+            new StudentDashboard(user).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No dashboard for role: " + user.getRole());
+        }
     }
+
 
     // Variables declaration
     private javax.swing.JLabel lblTitle;

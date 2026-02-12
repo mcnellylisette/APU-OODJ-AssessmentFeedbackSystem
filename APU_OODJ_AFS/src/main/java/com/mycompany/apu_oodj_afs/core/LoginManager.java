@@ -4,29 +4,78 @@
  */
 package com.mycompany.apu_oodj_afs.core;
 
-/**
- *
- * @author jamesmcnellylisette
- */
 import com.mycompany.apu_oodj_afs.models.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class LoginManager {
+
     public static User authenticate(String username, String password) {
+
         try (BufferedReader br = new BufferedReader(new FileReader("data/users.txt"))) {
+
             String line;
             while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+
                 String[] data = line.split("\\|");
-                if (data[1].equals(username) && data[2].equals(password)) {
-                    // This is Polymorphism: returning a specific child as a User parent
-                    if (data[5].equals("Admin")) return new Admin(data[0], data[1], data[2], data[3], data[4], data[5]);
-                    if (data[5].equals("Student")) return new Student(data[0], data[1], data[2], data[3], data[4], data[5]);
-                    if (data[5].equals("Lecturer")) return new Lecturer(data[0], data[1], data[2], data[3], data[4], data[5]);
+                if (data.length < 6) continue;
+
+                String id = data[0].trim();
+                String uname = data[1].trim();
+                String pass = data[2].trim();
+                String name = data[3].trim();
+                String role = data[4].trim();   // ✅ role is index 4
+                String email = data[5].trim();  // ✅ email is index 5
+
+                if (uname.equals(username) && pass.equals(password)) {
+
+                    // Return correct subclass based on ROLE
+                    if (role.equalsIgnoreCase("ADMIN")) {
+                        return new Admin(id, uname, pass, name, role, email);
+                    }
+
+                    if (role.equalsIgnoreCase("STUDENT")) {
+                        return new Student(id, uname, pass, name, role, email);
+                    }
+
+                    if (role.equalsIgnoreCase("LECTURER")) {
+                        return new Lecturer(id, uname, pass, name, role, email);
+                    }
+
+                    if (role.equalsIgnoreCase("ACADEMIC_LEADER")) {
+                        return new AcademicLeader(id, uname, pass, name, role, email);
+                    }
+
+                    // fallback (in case role is something unexpected)
+
+                    return new User(id, uname, pass, name, role, email) {
+                        @Override
+                        public void displayDashboard() {
+                            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                        }
+                    };
                 }
             }
+
         } catch (IOException e) {
-            System.out.println("Error reading users file.");
+            System.out.println("Error reading users file: " + e.getMessage());
         }
+
         return null;
+    }
+
+    private static class AcademicLeader extends User {
+
+        public AcademicLeader(String id, String uname, String pass,
+                      String name, String role, String email) {
+        super(id, uname, pass, name, role, email);
+    }
+
+        @Override
+        public void displayDashboard() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
     }
 }
