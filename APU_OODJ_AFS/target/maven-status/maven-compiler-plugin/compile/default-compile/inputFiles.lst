@@ -1,5 +1,6 @@
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/Main.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/StudentModuleTestMain.java
+/Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/core/AcademicLeaderDataService.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/core/FileManager.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/core/IDGenerator.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/core/LecturerData.java
@@ -8,6 +9,8 @@
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/core/UserAuthService.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/core/UserProfileService.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/core/ValidationUtil.java
+/Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/AcademicLeaderDashboardFrame.java
+/Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/AcademicLeaderEditProfileFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/AdminDashboard.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/CreateClassFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/GradingSystemFrame.java
@@ -19,6 +22,7 @@
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/LecturerMarksManagerTableFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/LoginFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/LoginPage.java
+/Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/ModuleManagementFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentClassRegistrationFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentCommentFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentDashboard.java
@@ -26,13 +30,16 @@
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentEnrollmentViewFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentFeedbackFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentFinalGradeFrame.java
+/Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentReportFrame.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/gui/StudentResultsFrame.java
+/Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/AcademicLeader.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/Admin.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/Assessment.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/Enrollment.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/GradingSystem.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/Lecturer.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/LecturerComment.java
+/Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/Module.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/Result.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/Student.java
 /Users/inaamahamed/Documents/MY_IMP/Java Practicles/APU_OODJ_WORK/APU-OODJ-AssessmentFeedbackSystem/APU_OODJ_AFS/src/main/java/com/mycompany/apu_oodj_afs/models/StudentFeedback.java
