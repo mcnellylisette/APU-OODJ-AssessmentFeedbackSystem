@@ -10,7 +10,7 @@ import com.mycompany.apu_oodj_afs.core.LoginManager;
 import com.mycompany.apu_oodj_afs.models.Admin;
 import com.mycompany.apu_oodj_afs.models.Student;
 import com.mycompany.apu_oodj_afs.models.Lecturer;
-import com.mycompany.apu_oodj_afs.models.AcademicLeader; // ✅ ADD THIS
+import com.mycompany.apu_oodj_afs.models.AcademicLeader; 
 import com.mycompany.apu_oodj_afs.models.User;
 import javax.swing.JOptionPane;
 
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class LoginPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginPage.class.getName());
-    private LoginManager loginManager;  // Instance-based LoginManager
+    private final LoginManager loginManager;  // Instance-based LoginManager
 
     /**
      * Creates new form LoginPage
@@ -49,9 +49,9 @@ public class LoginPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Username.setText("Username");
+        Username.setText("Username :");
 
-        Password.setText("Password");
+        Password.setText("Password : ");
 
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,35 +71,28 @@ public class LoginPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Password)
+                    .addComponent(Username))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(Password))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(37, 37, 37)
-                                    .addComponent(Username))
-                                .addComponent(txtUsername))
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(137, Short.MAX_VALUE))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtUsername)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                .addGap(126, 126, 126))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(Username)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Password)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Username))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Password))
                 .addGap(30, 30, 30)
                 .addComponent(btnLogin)
                 .addContainerGap(80, Short.MAX_VALUE))
@@ -160,28 +153,20 @@ public class LoginPage extends javax.swing.JFrame {
      */
     private void openDashboard(User user) {
         // Use polymorphism to open the correct dashboard
-        if (user instanceof Admin) {
-            // Admin Dashboard - pass Admin object to constructor
-            new AdminDashboard((Admin) user).setVisible(true);
-            
-        } else if (user instanceof Student) {
-            // Student Dashboard
-            new StudentDashboard((Student) user).setVisible(true);
-            
-        } else if (user instanceof Lecturer) {
-            // Open Lecturer Dashboard 
-            new LecturerDashboardFrame((Lecturer) user).setVisible(true);
-        
-        } else if (user instanceof AcademicLeader) {
-            new AcademicLeaderDashboardFrame((AcademicLeader) user).setVisible(true);
-
-            } else {
-                // Unknown user type
-                JOptionPane.showMessageDialog(this, 
-                    "Unknown user role. Please contact administrator.", 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE);
-                }
+        switch (user) {
+            case Admin admin -> // Admin Dashboard - pass Admin object to constructor
+                new AdminDashboard(admin).setVisible(true);
+            case Student student -> // Student Dashboard
+                new StudentDashboard(student).setVisible(true);
+            case Lecturer lecturer -> // Open Lecturer Dashboard 
+                new LecturerDashboardFrame(lecturer).setVisible(true);
+            case AcademicLeader academicLeader -> new AcademicLeaderDashboardFrame(academicLeader).setVisible(true);
+            default -> // Unknown user type
+                JOptionPane.showMessageDialog(this,
+                        "Unknown user role. Please contact administrator.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+        }
         }   
 
      /**

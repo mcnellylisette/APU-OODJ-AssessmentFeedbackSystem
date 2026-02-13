@@ -47,6 +47,7 @@ public class LecturerData {
 
     /**
      * Ensure file + parent folder exist.
+     * @param path
      */
     public static void ensureFile(String path) {
         try {
@@ -67,6 +68,8 @@ public class LecturerData {
 
     /**
      * Read all non-empty lines from a file.
+     * @param path
+     * @return 
      */
     public static List<String> readAll(String path) {
         ensureFile(path);
@@ -88,6 +91,8 @@ public class LecturerData {
 
     /**
      * Append one line to the end of file.
+     * @param path
+     * @param line
      */
     public static void appendLine(String path, String line) {
         ensureFile(path);
@@ -102,6 +107,8 @@ public class LecturerData {
     /**
      * Overwrite file with the provided lines.
      * Used for update/delete operations.
+     * @param path
+     * @param lines
      */
     public static void overwriteAll(String path, List<String> lines) {
         ensureFile(path);
@@ -122,6 +129,9 @@ public class LecturerData {
      * Example:
      * - assessments: delete by assessmentId
      * - marks: delete by markId (if you ever add delete marks)
+     * @param path
+     * @param id
+     * @return 
      */
     public static boolean deleteById(String path, String id) {
         List<String> lines = readAll(path);
@@ -140,6 +150,8 @@ public class LecturerData {
 
     /**
      * Simple unique ID generator.
+     * @param prefix
+     * @return 
      */
     public static String nextId(String prefix) {
         return prefix + System.currentTimeMillis();

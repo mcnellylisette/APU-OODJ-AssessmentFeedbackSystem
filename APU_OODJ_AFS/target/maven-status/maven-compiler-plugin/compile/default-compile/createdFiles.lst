@@ -38,6 +38,7 @@ com/mycompany/apu_oodj_afs/models/Module.class
 com/mycompany/apu_oodj_afs/gui/CreateClassFrame.class
 com/mycompany/apu_oodj_afs/gui/LoginPage$2.class
 com/mycompany/apu_oodj_afs/Main.class
+com/mycompany/apu_oodj_afs/gui/AdminDashboard$11.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$10.class
 com/mycompany/apu_oodj_afs/models/GradingSystem.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard$4.class
@@ -64,6 +65,7 @@ com/mycompany/apu_oodj_afs/gui/AdminDashboard$3.class
 com/mycompany/apu_oodj_afs/core/IDGenerator.class
 com/mycompany/apu_oodj_afs/models/StudentFeedback.class
 com/mycompany/apu_oodj_afs/core/ValidationUtil.class
+com/mycompany/apu_oodj_afs/gui/AdminDashboard$12.class
 com/mycompany/apu_oodj_afs/core/LecturerData.class
 com/mycompany/apu_oodj_afs/gui/AdminDashboard.class
 com/mycompany/apu_oodj_afs/gui/StudentResultsFrame$1.class
